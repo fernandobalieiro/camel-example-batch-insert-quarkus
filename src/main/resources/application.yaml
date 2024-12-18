@@ -1,0 +1,31 @@
+quarkus:
+  datasource:
+    db-kind: postgresql
+    devservices:
+      volumes:
+        "/tmp/test/data": /var/lib/postgresql/data
+  flyway:
+    migrate-at-start: true
+  security:
+    users:
+      embedded:
+        enabled: true
+        plain-text: true
+        users:
+          hawtio: hawtio
+        roles:
+          hawtio: admin
+
+"%prod":
+  quarkus:
+    datasource:
+      db-kind: postgresql
+      username: test
+      password: test
+      jdbc:
+        url: jdbc:postgresql://localhost:5432/test
+      devservices:
+        devservices:
+          enabled: false
+    flyway:
+      baseline-on-migrate: true

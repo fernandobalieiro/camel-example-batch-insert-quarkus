@@ -1,0 +1,11 @@
+services:
+  postgres:
+    image: postgres:17-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: test
+      POSTGRES_PASSWORD: test
+      POSTGRES_DB: test
+    volumes:
+      - ./src/main/resources/db/migration/V1.0.0__People_Table.sql:/docker-entrypoint-initdb.d/create_tables.sql
